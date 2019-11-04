@@ -1,0 +1,53 @@
+<mat-button-toggle (click)="returnToSearchPage()">Retour</mat-button-toggle>
+
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Chercher via Auteur, Catégorie, .. " [(ngModel)]="filterValue" name="filterValue">
+  </mat-form-field>
+</form>
+<mat-form-field>
+  <mat-label>Filtrer selon</mat-label>
+  <mat-select [(value)]="selectedFilter" (selectionChange)="searchWithSelectedCriteria($event.value)">
+    <mat-option *ngFor="let criteria of criterias" [value]="criteria">
+      {{criteria}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<br>
+<p>
+  <span matBadge="{{ totalItems }} " matBadgeOverlap="false"><b>Total Items</b></span>
+</p>
+
+
+<br>
+<br>
+
+
+<mat-card class="example-card" *ngFor="let book of books">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title><b>{{book.volumeInfo.title}}</b></mat-card-title>
+    <mat-card-subtitle>{{book.volumeInfo.authors}}</mat-card-subtitle>
+    <mat-card-subtitle>{{book.volumeInfo.publishedDate}}</mat-card-subtitle>
+  </mat-card-header>
+
+  <img mat-card-image src="{{book.volumeInfo.imageLinks.smallThumbnail}}" alt="book image" class="center" border="2"
+       *ngIf="haveThumbNail(book.volumeInfo)">
+  <mat-card-content>
+    <p>
+      {{book.volumeInfo.description}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="showBookDetails(book.selfLink)">Détails</button>
+
+  </mat-card-actions>
+</mat-card>
+
+
+<div class="example-button-row">
+  <mat-button-toggle (click)="previousPage()" *ngIf="showPreviousButton()">Previous</mat-button-toggle>
+
+  <mat-button-toggle (click)="nextPage()" *ngIf="showNextButton()">Next</mat-button-toggle>
+</div>

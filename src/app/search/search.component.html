@@ -1,0 +1,6 @@
+<form class="example-form" (ngSubmit)="!bookForm.invalid && redirectToResult()" #bookForm="ngForm">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Type your book name" [(ngModel)]="bookName" name="bookName">
+  </mat-form-field>
+
+</form>

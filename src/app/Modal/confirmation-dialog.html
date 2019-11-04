@@ -1,0 +1,22 @@
+<mat-dialog-content>
+
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title><b>{{bookPopUp?.volumeInfo.title}}</b></mat-card-title>
+      <mat-card-subtitle>{{bookPopUp?.volumeInfo.pageCount}} Pages</mat-card-subtitle>
+      <mat-card-subtitle>Date Publicaion : {{bookPopUp?.volumeInfo.publishedDate}}</mat-card-subtitle>
+      <mat-card-subtitle>Langue : {{bookPopUp?.volumeInfo.language}}</mat-card-subtitle>
+    </mat-card-header>
+
+
+  </mat-card>
+
+
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button mat-raised-button color="primary" (click)="openBookLink(bookPopUp?.volumeInfo.previewLink)">Lien Livre
+  </button>
+  <button mat-button (click)="onConfirmClick()" tabindex="1">{{confirmButtonText}}</button>
+
+</mat-dialog-actions>
